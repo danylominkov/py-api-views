@@ -29,8 +29,8 @@ class Movie(models.Model):
 
 class CinemaHall(models.Model):
     name = models.CharField(max_length=255)
-    rows = models.IntegerField(default=None)
-    seats_in_row = models.IntegerField(default=None)
+    rows = models.IntegerField(default=None, null=True)
+    seats_in_row = models.IntegerField(default=None, null=True)
 
     def __str__(self):
         return self.name
