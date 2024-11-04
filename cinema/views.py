@@ -15,13 +15,11 @@ class GenreList(APIView):
         serializer = GenreSerializer(genre, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
-    def post(self, request)-> Response:
+    def post(self, request) -> Response:
         serializer = GenreSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
-
-
 
 
 class GenreDetail(APIView):
@@ -52,11 +50,13 @@ class GenreDetail(APIView):
         genre.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)
 
+
 class ActorList(
     generics.GenericAPIView,
     mixins.ListModelMixin,
     mixins.CreateModelMixin
 ):
+
     queryset = Actor.objects.all()
     serializer_class = ActorSerializer
 
